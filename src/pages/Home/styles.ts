@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
+  padding-top: 100px;
   flex: 1;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -8,6 +9,7 @@ export const Container = styled.div`
   min-height: 100vh;
   background-color: var(--bg);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   .card {
@@ -44,12 +46,12 @@ export const Container = styled.div`
         color: var(--ligth-grey);
         transition: all 0.2s;
 
-        &:hover{
-            transform: scale(1.01);
-            transition: all 0.2s;
+        &:hover {
+          transform: scale(1.01);
+          transition: all 0.2s;
         }
       }
-      button{
+      button {
         width: 20%;
         background-color: var(--bg-button);
         border: none;
@@ -60,11 +62,24 @@ export const Container = styled.div`
 
         color: var(--bg);
 
-        &:hover{
-            transform: scale(1.05);
-            transition: all 0.2s;
+        &:hover {
+          transform: scale(1.05);
+          transition: all 0.2s;
         }
       }
     }
   }
-`;
+  .arrowDown {
+    border: none;
+    outline: none;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: var(--bg-button);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`

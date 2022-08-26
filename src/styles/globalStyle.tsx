@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
 :root{
@@ -6,7 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     --bg: #0B1B2B;
     --black: #000;
     --ligth-grey: #909090;
-    --bg-button: #3294F8
+    --bg-button: #3294F8;
+    --white: #fff
 
 }
 
@@ -40,4 +41,4 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-`;
+`
