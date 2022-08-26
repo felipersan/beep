@@ -4,7 +4,6 @@ export const Container = styled.div`
   min-width: 50vw;
   max-width: 400px;
   min-height: 500px;
-  overflow-y: hidden;
 
   .search {
     margin-top: 50px;
