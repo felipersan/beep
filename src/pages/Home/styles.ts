@@ -18,7 +18,7 @@ export const Container = styled.div<props>`
   justify-content: center;
   overflow: auto;
   .card {
-    height: 70vh;
+    height: 50vh;
     min-width: 400px;
     max-width: 50%;
     background-color: var(--bgCard);
