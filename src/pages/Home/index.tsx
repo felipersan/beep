@@ -33,13 +33,13 @@ export default function Home() {
     try {
       if (!name) throw new Error('Por favor, digite um nome')
       getUser(name)
-    } catch (error) {
-      alert(error)
+    } catch (error: any) {
+      toast.error(error.message)
     }
   }
 
   return (
-    <Container>
+    <Container user={!!user}>
       <div className="card">
         <div
           className="image"
@@ -57,9 +57,19 @@ export default function Home() {
           <button type="submit">Pesquisar</button>
         </form>
       </div>
-      <button className="arrowDown">
-        <IconArrowDown color={'#fff'} size={45} />
-      </button>
+      {user && (
+        <button
+          className="arrowDown"
+          onClick={() => {
+            userRef.current?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            })
+          }}
+        >
+          <IconArrowDown color={'#fff'} size={45} />
+        </button>
+      )}
       {user && (
         <div className="user" ref={userRef}>
           <User data={user} />

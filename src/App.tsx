@@ -4,11 +4,11 @@ import { GlobalStyle } from './styles/globalStyle'
 
 function App() {
   return (
-    <>
+    <div className="cont">
       <GlobalStyle />
       <Home />
       <ToastContainer />
-    </>
+    </div>
   )
 }
 

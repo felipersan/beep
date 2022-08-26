@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { IconGitHub } from '../../../assets/icons'
 import { Container } from './styles'
 
@@ -12,8 +13,9 @@ interface props {
 }
 
 export default function UserCard({ data }: props) {
+  const cardRef = useRef<any>(null)
   return (
-    <Container>
+    <Container ref={cardRef} photo={cardRef?.current?.clientWidth * 0.9}>
       <div
         className="perfil"
         style={{ backgroundImage: `url(${data.photo})` }}

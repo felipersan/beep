@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface props {
+  photo: number
+}
+
+export const Container = styled.div<props>`
   width: 100%;
   min-height: 150px;
   background-color: var(--bgCard);
@@ -11,6 +15,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 20px;
   gap: 20px;
+  background-color: transparent;
 
   .perfil {
     min-height: 110px;
@@ -45,6 +50,13 @@ export const Container = styled.div`
       gap: 5px;
 
       color: var(--white);
+    }
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    .perfil {
+      min-height: ${({ photo }) => photo && `${photo}px`};
+      min-width: ${({ photo }) => photo && `${photo}px`};
     }
   }
 `

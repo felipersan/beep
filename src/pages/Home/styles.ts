@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  padding-top: 100px;
+interface props {
+  user: boolean
+}
+
+export const Container = styled.div<props>`
+  padding-top: ${({ user }) => user && '100px'};
+  overflow-y: hidden;
   flex: 1;
-  overflow-x: hidden;
   box-sizing: border-box;
   min-width: 100%;
   min-height: 100vh;
@@ -12,9 +16,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: auto;
   .card {
     height: 70vh;
-    width: 50%;
+    min-width: 400px;
+    max-width: 50%;
     background-color: var(--bgCard);
     border-radius: 25px;
     -webkit-box-shadow: 0px 0px 12px 0px var(--black);
@@ -81,5 +87,17 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 500px) {
+    .card {
+      min-width: 90%;
+      height: 400px;
+    }
   }
 `

@@ -1,3 +1,8 @@
+import { FormEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { useDebouncedCallback } from 'use-debounce'
+import api from '../../api/api'
+import ReposCard from './ReposCard'
 import { Container } from './styles'
 import UserCard from './UserCard'
 
@@ -41,7 +46,42 @@ interface props {
 }
 
 export default function User({ data }: props) {
-  console.log(data)
+  const [repos, setRepos] = useState<any[]>([])
+  const [filteredRepos, setFilteredRepos] = useState<any[]>([])
+
+  useEffect(() => {
+    getRepos()
+    setFilteredRepos([])
+  }, [data])
+
+  function handleUser(event: FormEvent) {
+    event.preventDefault()
+    //filtrar repos
+  }
+
+  const debounced = useDebouncedCallback((value: any) => {
+    filterRepos(value.target.value)
+  }, 1000)
+
+  async function getRepos() {
+    api.get(`${data.login}/repos`).then((response: any) => {
+      setRepos(response.data)
+    })
+  }
+
+  function filterRepos(name: string) {
+    try {
+      const newRepos = repos.filter((val: any) => {
+        return val.name.toUpperCase().includes(name.toUpperCase())
+      })
+      setFilteredRepos(newRepos)
+      if (newRepos.length === 0)
+        throw new Error('Ops, Repositório não encontrado')
+    } catch (error: any) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     <Container>
       <UserCard
@@ -53,6 +93,25 @@ export default function User({ data }: props) {
           path: data.html_url
         }}
       />
+      <h3 className="search">Pesquisar Repositórios:</h3>
+      <form onSubmit={handleUser}>
+        <input
+          type="text"
+          className="input"
+          onChange={debounced}
+          placeholder="Digite seu usuário do GitHub"
+        />
+        <button type="submit">Pesquisar</button>
+      </form>
+      <div className="areaRepos">
+        {filteredRepos.length > 0
+          ? filteredRepos.map((row: any, key: number) => (
+              <ReposCard key={key} data={row} />
+            ))
+          : repos.map((row: any, key: number) => (
+              <ReposCard key={key} data={row} />
+            ))}
+      </div>
     </Container>
   )
 }
